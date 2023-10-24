@@ -17,62 +17,111 @@ public class RockPaperScissors {
     	int losses = 0;
     	int wins = 0;
     	boolean resume = true;
-    	
+    	boolean resumeLoop = true;
     	System.out.println ("Welcome to Rock Paper Scissors");
-        System.out.println ("Would you like to pick (R)ock, (P)aper, (S)cissors, or (A)ny:" );
-        String firstChoice = sc.nextLine();
-        firstChoice.toUpperCase();
-        //String computerChoice = getRandomChoice();
-        //if (results("R","P") == 1) {
-        //	wins ++;
         
         
-       // }
-         //else if (results("A","P")== 1) {
-        	
-        	//wins++;
-        	//System.out.println ("You picked Rock, and the computer picked Paper. You lose!");
-        //}
+        
       while (resume == true) {
-        if ((firstChoice.equals("R")) && getRandomChoice().equals ("S")) {
+    	  System.out.println ("Would you like to pick (R)ock, (P)aper, (S)cissors, or (A)ny:" );
+    	  String computerChoice = getRandomChoice();
+    	  String firstChoice = sc.nextLine().toUpperCase();
+    	if (firstChoice.equals("A")) {
+    		 firstChoice = getRandomChoice();
+    	 }
+    	
+    	if ((firstChoice.equals("R")) && computerChoice.equals ("S")) {
         	System.out.println ("You picked Rock, and the Computer picked Scissors. You Win!");
         	wins ++;
         	System.out.println ("You have " + wins + " wins and " + losses + " losses and " + ties + " ties");
-        
+        	resumeLoop=true;
         }
-         else if ((firstChoice.equals("R")) && getRandomChoice().equals ("P")) {
+         else if ((firstChoice.equals("R")) && computerChoice.equals ("P")) {
         	System.out.println ("You picked Rock, and the Computer picked Paper. You Lose.");
         	losses++;
         	System.out.println ("You have " + wins + " wins and " + losses + " losses and " + ties + " ties");
+        	resumeLoop=true;
          }
-         else if ((firstChoice.equals("R") && getRandomChoice().equals("R"))) {
+         else if ((firstChoice.equals("R") && computerChoice.equals("R"))) {
         	System.out.println("You both picked Rock. It's a tie! ");
         	ties++;
         	System.out.println ("You have " + wins + " wins and " + losses + " losses and " + ties + " ties");
+        	resumeLoop=true;
          }
-        	
-        	System.out.println("Would you like to play again?");
-        	String Continue = sc.nextLine() ;
-         if (Continue.equals ("N")|| Continue.equals("n")) {
-        	 
-        	 System.out.println ("Thank you for playing!");
-        	 sc.close();
-        	 resume = false;
-        	
+         else if ((firstChoice.equals("P") && computerChoice.equals("R"))){
+        	System.out.println("You picked Paper, and the Computer picked Rock. You Win! ");
+         	wins++;
+         	System.out.println ("You have " + wins + " wins and " + losses + " losses and " + ties + " ties");
+         	resumeLoop=true;
          }
-         while (!(Continue.equals("N")|| Continue.equals("n"))) {
-        	if (Continue.equals("Y") || Continue.equals("y")) {
+         else if ((firstChoice.equals("P") && computerChoice.equals("S"))){
+         	System.out.println("You picked Paper, and the Computer picked Scissors. You Win! ");
+          	losses++;
+          	System.out.println ("You have " + wins + " wins and " + losses + " losses and " + ties + " ties");
+          	resumeLoop=true;
+         }
+         else if ((firstChoice.equals(computerChoice))){
+         	System.out.println("You both picked Paper. It's a tie! ");
+          	ties++;
+          	System.out.println ("You have " + wins + " wins and " + losses + " losses and " + ties + " ties");
+          	resumeLoop=true;
+         }
+         else if ((firstChoice.equals("S") && computerChoice.equals("R"))){
+         	System.out.println("You picked Scissors, and the Computer picked Rock. You Lose ");
+          	losses++;
+          	System.out.println ("You have " + wins + " wins and " + losses + " losses and " + ties + " ties");
+          	resumeLoop=true;
+         }
+         else if ((firstChoice.equals("S") && computerChoice.equals("P"))){
+         	System.out.println("You picked Scissors, and the Computer picked Paper. You Win! ");
+          	wins++;
+          	System.out.println ("You have " + wins + " wins and " + losses + " losses and " + ties + " ties");
+          	resumeLoop=true;
+         }
+         else if ((firstChoice.equals(computerChoice))){
+         	System.out.println("You both picked Paper. You Tied! ");
+          	ties++;
+          	System.out.println ("You have " + wins + " wins and " + losses + " losses and " + ties + " ties");
+          	resumeLoop=true;
+         }
+         
+         else if (!(firstChoice.equals("R")	|| firstChoice.equals("P")|| firstChoice.equals("S") || firstChoice.equals("A"))) {
+        	 invalidEntry();
+        	 resumeLoop = false;
+        	 resume = true;
+         }
+         else {
+        	 resume = true; 
+         }
+    	while (resumeLoop) {
+    		System.out.println("Would you like to play again (Y)es (N)o?");
+        	String Continue = sc.nextLine().toUpperCase() ;
+        	
+        	if (Continue.equals ("N")) {
+        		System.out.println ("Thank you for playing!");
+           	 	sc.close();
+           	 	resume = false;
+           	 	resumeLoop=false;
+         }
+        	else if (Continue.equals("Y")) {
         		resume = true;
+        		resumeLoop= false;
         	}
-        	System.out.println("Invalid Input, please try again");
-        	//String tryAgain = sc.nextLine();
-        	//if 
-         } 
- 	         
+        	else if (!Continue.equals("Y")) {
+        		invalidEntry();
+         }
+        	
          
          
-      } 
-   }
+    	}
+        	 
+        	
+          
+      }     
+         
+         
+     } 
+   
     /**
      * JAVADOC HERE
      */
@@ -116,7 +165,7 @@ public class RockPaperScissors {
 
     
     	
-		public static String getRandomChoice () {
+		private static String getRandomChoice () {
 		int a = (int)(Math.random()*3)+1;
 			if (a == 1) {
 				return  "R";
@@ -133,7 +182,6 @@ public class RockPaperScissors {
 		}
 		public static String invalidEntry() {
 			System.out.println("Invalid Input, please try again");
-			System.out.println("Would you like to play again (Y)es (N)o?");
 	        return null;
 		}
 }
