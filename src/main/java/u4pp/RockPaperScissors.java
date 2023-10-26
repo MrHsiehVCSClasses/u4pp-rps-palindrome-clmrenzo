@@ -55,7 +55,7 @@ public class RockPaperScissors {
          	resumeLoop=true;
          }
          else if ((firstChoice.equals("P") && computerChoice.equals("S"))){
-         	System.out.println("You picked Paper, and the Computer picked Scissors. You Win! ");
+         	System.out.println("You picked Paper, and the Computer picked Scissors. You Lose. ");
           	losses++;
           	System.out.println ("You have " + wins + " wins and " + losses + " losses and " + ties + " ties");
           	resumeLoop=true;
@@ -67,7 +67,7 @@ public class RockPaperScissors {
           	resumeLoop=true;
          }
          else if ((firstChoice.equals("S") && computerChoice.equals("R"))){
-         	System.out.println("You picked Scissors, and the Computer picked Rock. You Lose ");
+         	System.out.println("You picked Scissors, and the Computer picked Rock. You Lose. ");
           	losses++;
           	System.out.println ("You have " + wins + " wins and " + losses + " losses and " + ties + " ties");
           	resumeLoop=true;
@@ -180,7 +180,7 @@ public class RockPaperScissors {
 				return null;
 			}
 		}
-		public static String invalidEntry() {
+		private static String invalidEntry() {
 			System.out.println("Invalid Input, please try again");
 	        return null;
 		}
