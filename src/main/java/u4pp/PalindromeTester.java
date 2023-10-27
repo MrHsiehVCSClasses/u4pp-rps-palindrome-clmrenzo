@@ -13,8 +13,8 @@ public class PalindromeTester {
         boolean resume = true; 
         boolean loopResume = true;
         while (resume) {
-        	System.out.println("Enter a Phrase:");
-        	String input = sc.nextLine();
+        	System.out.print("Enter a Phrase:");
+        	String input = sc.nextLine().trim();
         	if (isPalindrome(input)) {
         		System.out.println(input + " is a palindrome");
         	}
@@ -23,7 +23,7 @@ public class PalindromeTester {
         	}
         	loopResume = true;
         	while (loopResume) {
-        		System.out.println ("Keep testing? (Y)es or (N)o: ");
+        		System.out.print ("Keep testing? (Y)es or (N)o: ");
         		String choice = sc.nextLine().toUpperCase();
         		if (choice.equals("Y")) {
         			loopResume = false;
@@ -55,7 +55,8 @@ public class PalindromeTester {
     	  return true;
       }
       return false;
-    }
-
+      
+      }
+ 
     /* Any helper methods you might need */
 }
